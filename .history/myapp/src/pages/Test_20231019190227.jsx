@@ -1,0 +1,19 @@
+import React, { useState } from 'react';
+
+const UploadImage = () => {
+  const [file, setFile] = useState(null);
+  const {} = useStor
+  const handleFileChange = (event) => {
+    return (
+      <div>
+        <input
+          type="file"
+          placeholder="Enter your content"
+          className="w-[300px] border border-slate-200 rounded-lg py-3 px-5 outline-none  bg-transparent"
+        />
+        <button>upload</button>
+      </div>
+    );
+};
+
+export default UploadImage;
