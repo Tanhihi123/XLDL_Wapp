@@ -47,7 +47,7 @@ const Body = () => {
     // Create a FormData object and append the image to it.
     const formData = new FormData();
     formData.append('image_input', image);
-    // formData.append('text_input', "cmm");
+    formData.append('text_input', "cmm");
 
     // Make a POST request to the server with the FormData object.
     const response = await axios.post('http://192.168.33.1/predict', formData, {

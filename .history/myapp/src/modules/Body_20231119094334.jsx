@@ -2,15 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ImageUpload from "../components/Image/ImageUpload";
-import StarsMouse from "../components/Mouse/StarsMouse";
 const Body = () => {
   const [file, setFile] = useState(null);
   const [image, setImage] = useState(null);
   const [process, setProcess] = useState(0);
-  const [data, setData] = useState({
-    title: "",
-    body: ""
-})
   useEffect(() => {
     const uploadToImgbb = async () => {
       if (!file) return null;
@@ -44,32 +39,7 @@ const Body = () => {
   //   console.log(image);
   // };
   const handleClick = async () => {
-    // Create a FormData object and append the image to it.
-    const formData = new FormData();
-    formData.append('image_input', image);
-    // formData.append('text_input', "cmm");
-
-    // Make a POST request to the server with the FormData object.
-    const response = await axios.post('http://192.168.33.1/predict', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-
-    // Handle the response.
-    if (response.status === 200) {
-      // The image was successfully uploaded.
-      // Do something with the response.data.
-      const data = response.data.images;
-      const src = `data:image/png;base64,${data}`;
-      console.log(src);
-      // setNewImage(src);
-    } else {
-      // An error occurred.
-      // Handle the error.
-      console.error('Failed to upload and process the image.');
-      console.log(image);
-    }
+    const rs = await axios.post()
   }
   return (
     <div className="flex flex-col gap-5 justify-center items-center">
@@ -80,7 +50,7 @@ const Body = () => {
           progress={process}
           image={image}
         ></ImageUpload>
-        {/* <div className="w-[500px] h-[250px]">
+        <div className="w-[500px] h-[250px]">
           <div className="relative h-full w-full min-w-[300px]">
             <textarea
               className="peer h-full border-t-white text-white min-h-[100px] w-full resize-none rounded-[7px] border border-white border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-green-400 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
@@ -90,11 +60,11 @@ const Body = () => {
               <p className="text-white">Description</p>
             </label>
           </div>
-        </div> */}
+        </div>
       </div>
       {/* <button onClick={handleClick} className="bg-red">click</button> */}
-      {/* <Link to={"/rs"}> */}
-        <button className="btn" type="button" onClick={handleClick}>
+      <Link to={"/rs"}>
+        <button className="btn" type="button">
           <strong>Handle</strong>
           <div id="container-stars">
             <div id="stars"></div>
@@ -105,8 +75,7 @@ const Body = () => {
             <div className="circle"></div>
           </div>
         </button>
-      {/* </Link> */}
-      <StarsMouse></StarsMouse>
+      </Link>
     </div>
   );
 };
